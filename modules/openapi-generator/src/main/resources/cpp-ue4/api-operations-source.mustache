@@ -170,7 +170,7 @@ void {{classname}}::{{operationIdCamelCase}}Request::SetupHttpRequest(const FHtt
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
 		HttpRequest->SetContentAsString(JsonBody);
 		{{/bodyParams.0}}
-		{{^bodyParams.0}}
+		{{#formParams.0}}
 		// Form parameters
 		FString JsonBody;
 		JsonWriter Writer = TJsonWriterFactory<>::Create(&JsonBody);
@@ -191,7 +191,7 @@ void {{classname}}::{{operationIdCamelCase}}Request::SetupHttpRequest(const FHtt
 		Writer->Close();
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
 		HttpRequest->SetContentAsString(JsonBody);
-		{{/bodyParams.0}}
+		{{/formParams.0}}
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
